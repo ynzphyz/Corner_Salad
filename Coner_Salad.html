@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Corner Salad Buah | Kesegaran alami dalam setiap sajian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+
+  /* Tier 1: primitives */
+  --p-green-900:#1F5A3A;
+  --p-green-700:#2C7A55;
+  --p-green-300:#CDEBA0;
+  --p-mango:#F7B500;
+  --p-strawberry:#CC2B49;
+  --p-ink:#24362B;
+  --p-ink-soft:#4D5B51;
+  --p-paper:#FBFAF5;
+  --p-melon:#EEF5E3;
+
+  /* Tier 2: semantic */
+  --bg:var(--p-paper);
+  --surface:var(--p-melon);
+  --text:var(--p-ink);
+  --text-muted:var(--p-ink-soft);
+  --primary:var(--p-strawberry);
+  --on-primary:#FFFFFF;
+  --accent:var(--p-mango);
+  --on-accent:var(--p-ink);
+  --deep:var(--p-green-900);
+  --on-deep:#FFFFFF;
+  --hairline:rgba(31,90,58,.18);
+
+  --font-display:"Chewy","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Outfit",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+:root:not([data-theme="light"]){color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:auto}
+*,*::before,*::after{box-sizing:inherit}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--text);font:400 18px/1.6 var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit}
+img,svg{max-width:100%}
+:focus-visible{outline:3px solid var(--p-green-900);outline-offset:3px;border-radius:6px}
+.on-dark :focus-visible,.hero :focus-visible{outline-color:#fff}
+
+.display{font-family:var(--font-display);font-weight:400;letter-spacing:.005em}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;font:600 18px/1 var(--font-body);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s ease,background-color .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-accent{background:var(--accent);color:var(--on-accent)}
+.btn-ghost{border-color:#fff;color:#fff;background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.14)}
+.btn-primary{background:var(--primary);color:var(--on-primary)}
+
+/* ---------- Hero ---------- */
+.hero{--field:clamp(210px,30vw,360px);position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;min-height:min(100svh,920px);padding:132px 24px calc(var(--field) + 28px);color:#fff;background:linear-gradient(180deg,#1F6B47 0%,#2C7A55 40%,#58A67F 100%);overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(34% 22% at 78% 28%,rgba(255,255,255,.16),transparent 70%),
+  radial-gradient(30% 18% at 18% 40%,rgba(255,255,255,.12),transparent 70%),
+  radial-gradient(40% 20% at 50% 12%,rgba(255,255,255,.08),transparent 70%)}
+.hero h1{font-size:clamp(44px,6vw,84px);line-height:1.04;text-shadow:0 3px 0 rgba(20,60,40,.25)}
+.hero h1 span{display:block;transform-origin:50% 100%}
+.hero h1 span:nth-child(odd){transform:rotate(-1.2deg)}
+.hero h1 span:nth-child(even){transform:rotate(1deg)}
+.hero .sub{margin-top:18px;font-size:clamp(19px,2vw,24px);font-weight:500}
+.hero .cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.field{position:absolute;left:0;right:0;bottom:0;height:var(--field);z-index:0}
+.field svg{display:block;width:100%;height:100%}
+.hero > *:not(.field):not(.site-header){position:relative;z-index:1}
+
+@media (prefers-reduced-motion:no-preference){
+  .hero h1 span{animation:pop .7s cubic-bezier(.2,1.2,.4,1) both}
+  .hero h1 span:nth-child(1){animation-delay:.05s}
+  .hero h1 span:nth-child(2){animation-delay:.2s}
+  .hero h1 span:nth-child(3){animation-delay:.35s}
+  .hero h1 span:nth-child(4){animation-delay:.5s}
+  @keyframes pop{from{opacity:0;transform:translateY(-26px) scale(.92) rotate(-4deg)}}
+}
+
+/* ---------- Header / Nav ---------- */
+.site-header{position:absolute;top:0;left:0;right:0;z-index:5;padding:calc(22px + env(safe-area-inset-top,0px)) 24px 0}
+.nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:44px;font-weight:600;font-size:17px}
+.nav a{text-decoration:none;color:#fff}
+.links{display:flex;gap:36px}
+.links a{padding:10px 2px;border-bottom:2px solid transparent;transition:border-color .15s}
+.links a:hover{border-color:var(--accent)}
+.logo{font-family:var(--font-display);font-size:30px;line-height:1;white-space:nowrap;text-shadow:0 2px 0 rgba(20,60,40,.25)}
+.nav-toggle{display:none;min-height:44px;padding:0 18px;border-radius:999px;border:2px solid #fff;background:transparent;color:#fff;font:600 16px var(--font-body);cursor:pointer}
+@media (max-width:859px){
+  .nav{flex-wrap:wrap;justify-content:space-between;gap:12px}
+  .nav-toggle{display:inline-flex;align-items:center}
+  .links{display:none;order:3;width:100%;flex-direction:column;gap:0;background:rgba(31,90,58,.96);border-radius:20px;padding:8px 20px}
+  .links a{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+  .nav.open .links{display:flex}
+  .links-r{margin-top:-12px;border-radius:0 0 20px 20px}
+  .nav.open .links-l{border-radius:20px 20px 0 0}
+  .nav.open .links-l a:last-child{border-bottom-color:rgba(255,255,255,.18)}
+  .links-r a:last-child,.links-l a:last-child{border-bottom:0}
+}
+
+/* ---------- Philosophy (centered on deep green) ---------- */
+.intro{background:var(--deep);color:var(--on-deep);text-align:center;padding:112px 24px 120px}
+.intro h2{font-size:clamp(40px,5vw,68px);line-height:1.05}
+.intro h2 .l1{display:block;color:#fff}
+.intro h2 .l2{display:block;color:var(--accent);font-size:1.45em;margin-top:2px}
+.intro p{max-width:34em;margin:30px auto 0;font-size:clamp(18px,1.6vw,21px);line-height:1.75}
+
+/* ---------- Why (split) ---------- */
+.why{position:relative;overflow:hidden;padding:112px 24px 96px}
+.why-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:center}
+.why h2{font-size:clamp(38px,4.6vw,60px);line-height:1.02}
+.why h2 .l1{display:block;color:var(--text)}
+.why h2 .l2{display:block;color:var(--primary);font-size:1.25em;margin-top:2px}
+.reasons{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:34px 36px}
+.reason{display:flex;flex-direction:column;gap:10px}
+.ico{width:52px;height:52px;border-radius:999px;background:var(--p-green-700);display:grid;place-items:center}
+.ico svg{width:26px;height:26px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.reason h3{font:600 20px/1.3 var(--font-body)}
+.reason p{color:var(--text-muted);font-size:17px;line-height:1.6}
+.why-art{position:relative;margin-right:-60px}
+.why-art svg{display:block;width:100%;height:auto;max-height:620px}
+@media (max-width:900px){
+  .why-grid{grid-template-columns:1fr}
+  .why-art{margin:0 -24px -96px;order:2;max-width:480px;justify-self:center}
+  .reasons{grid-template-columns:1fr;gap:28px}
+}
+
+/* ---------- Menu teaser ---------- */
+.menu{background:var(--surface);padding:104px 24px 96px;text-align:center}
+.menu h2{font-size:clamp(38px,4.6vw,60px);line-height:1.02}
+.menu h2 .l1{display:block}
+.menu h2 .l2{display:block;color:var(--primary)}
+.sizes{max-width:1080px;margin:56px auto 0;display:grid;grid-template-columns:repeat(3,1fr)}
+.size{padding:8px 32px 12px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.size + .size{border-left:1px solid var(--hairline)}
+.size .stage{height:230px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:10px}
+.size .stage svg{width:auto}
+.size h3{font-size:34px;line-height:1.1}
+.size .vol{font-weight:600;color:var(--text-muted);font-size:17px}
+.size .price{font-family:var(--font-display);font-size:46px;line-height:1.1;color:var(--primary);margin-top:6px}
+.size p{max-width:19em;color:var(--text-muted);font-size:17px;line-height:1.55;margin:4px 0 16px}
+.menu .note{margin-top:44px;color:var(--text-muted);font-size:17px}
+@media (max-width:820px){
+  .sizes{grid-template-columns:1fr;margin-top:40px}
+  .size{padding:32px 8px}
+  .size + .size{border-left:0;border-top:1px solid var(--hairline)}
+  .size .stage{height:auto;min-height:140px}
+}
+
+/* ---------- Quote carousel ---------- */
+.dots{background:var(--surface);display:flex;justify-content:center;gap:0;padding:6px 0}
+.dot{width:44px;height:44px;border:0;background:transparent;cursor:pointer;display:grid;place-items:center;padding:0}
+.dot::after{content:"";width:12px;height:12px;border-radius:999px;background:#7C8C80;transition:background .2s,transform .2s}
+.dot[aria-current="true"]::after{background:var(--p-ink);transform:scale(1.25)}
+.stage-q{position:relative;min-height:560px;overflow:hidden;background:
+  radial-gradient(60% 55% at 18% 28%,#FBD768 0,transparent 70%),
+  radial-gradient(50% 60% at 82% 62%,#EFA800 0,transparent 70%),
+  radial-gradient(40% 40% at 56% 18%,#FFE08A 0,transparent 70%),#F7B500;isolation:isolate}
+.grain{position:absolute;inset:0;width:100%;height:100%;opacity:.35;mix-blend-mode:multiply;z-index:-1;pointer-events:none}
+.stems{position:absolute;left:0;right:0;bottom:0;width:100%;height:240px;z-index:0;pointer-events:none}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px 200px;color:#1C3326;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility .6s;z-index:1}
+.slide.active{opacity:1;visibility:visible}
+.slide blockquote{margin:0;max-width:17em;font-family:var(--font-display);font-size:clamp(32px,4.6vw,60px);line-height:1.12}
+.slide figcaption{margin-top:22px;font-weight:600;font-size:18px;letter-spacing:.02em}
+.slide figure{margin:0}
+@media (prefers-reduced-motion:reduce){.slide{transition:none}}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--bg);padding:48px 24px calc(40px + env(safe-area-inset-bottom,0px))}
+.foot-top{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+.flogo{font-family:var(--font-display);font-size:34px;line-height:1;color:var(--primary);text-decoration:none}
+.top-link{font-weight:600;color:var(--primary);text-decoration:none;padding:12px 8px}
+.top-link:hover{text-decoration:underline}
+.social{display:flex;gap:14px;justify-content:flex-end}
+.social a{width:52px;height:52px;border-radius:999px;background:var(--p-green-700);display:grid;place-items:center;transition:transform .15s}
+.social a:hover{transform:translateY(-2px)}
+.social svg{width:26px;height:26px;fill:#fff}
+.foot-info{max-width:1180px;margin:36px auto 0;padding-top:28px;border-top:1px solid var(--hairline);display:grid;grid-template-columns:1fr 1fr;gap:28px 48px;color:var(--text-muted);font-size:17px}
+.foot-info h3{font:600 17px var(--font-body);color:var(--text);margin-bottom:8px}
+.platforms{display:flex;align-items:center;flex-wrap:wrap;gap:12px 16px}
+.platforms a{display:inline-flex;width:150px;height:58px;padding:7px 12px;align-items:center;justify-content:center;text-decoration:none;transition:transform .15s ease}
+.platforms a:hover{transform:translateY(-2px)}
+.platforms .platform-logo{display:block;width:100%;height:100%;object-fit:contain}
+.platforms .soon{opacity:.8}
+@media (max-width:760px){
+  .foot-top{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .social{justify-content:center}
+  .foot-info{grid-template-columns:1fr}
+}
+@media (max-width:420px){
+  .platforms{justify-content:center}
+  .platforms a{width:138px;height:54px}
+}
+</style>
+</head>
+<body id="top">
+
+<!-- Fruit symbols reused by the hero field, the cup illustrations and the menu -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="fx-strawberry">
+      <path d="M0 46 C-30 34 -44 8 -38 -12 C-34 -26 -14 -30 0 -22 C14 -30 34 -26 38 -12 C44 8 30 34 0 46Z" fill="#E0334F"/>
+      <path d="M-26 -6 C-22 8 -12 22 0 34" stroke="#fff" stroke-opacity=".28" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <g fill="#FFE6A6"><ellipse cx="-14" cy="0" rx="2.4" ry="3.4"/><ellipse cx="10" cy="-8" rx="2.4" ry="3.4"/><ellipse cx="18" cy="8" rx="2.4" ry="3.4"/><ellipse cx="-4" cy="14" rx="2.4" ry="3.4"/><ellipse cx="-20" cy="-14" rx="2.4" ry="3.4"/><ellipse cx="2" cy="28" rx="2.4" ry="3.4"/></g>
+      <path d="M-20 -24 L0 -40 L20 -24 L8 -18 L0 -28 L-8 -18Z" fill="#3C8D5A"/>
+    </g>
+    <g id="fx-grape">
+      <g fill="#6B3FA0"><circle cx="-16" cy="-8" r="15"/><circle cx="0" cy="-14" r="15"/><circle cx="16" cy="-8" r="15"/><circle cx="-8" cy="8" r="15"/><circle cx="8" cy="8" r="15"/><circle cx="0" cy="24" r="15"/></g>
+      <g fill="#fff" fill-opacity=".35"><circle cx="-20" cy="-13" r="4"/><circle cx="-4" cy="-19" r="4"/><circle cx="12" cy="-13" r="4"/><circle cx="-12" cy="3" r="4"/><circle cx="4" cy="3" r="4"/><circle cx="-4" cy="19" r="4"/></g>
+      <path d="M0 -28 C4 -36 10 -38 14 -38" stroke="#3C8D5A" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="fx-melon">
+      <path d="M-46 -10 A46 46 0 0 0 46 -10Z" fill="#3C8D5A"/>
+      <path d="M-39 -10 A39 39 0 0 0 39 -10Z" fill="#CDEBA0"/>
+      <g fill="#8CC96B"><ellipse cx="-14" cy="6" rx="3" ry="5"/><ellipse cx="0" cy="12" rx="3" ry="5"/><ellipse cx="14" cy="6" rx="3" ry="5"/></g>
+    </g>
+    <g id="fx-mango">
+      <path d="M-30 -6 C-30 -34 10 -44 32 -24 C48 -8 34 30 4 36 C-18 40 -30 18 -30 -6Z" fill="#F7B500"/>
+      <path d="M12 -34 C38 -18 36 26 4 36 C22 18 26 -8 12 -34Z" fill="#F08A24" fill-opacity=".55"/>
+      <path d="M-14 -18 C-22 -8 -22 4 -18 12" stroke="#fff" stroke-opacity=".4" stroke-width="5" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="fx-apple">
+      <path d="M-42 -8 A42 42 0 0 0 42 -8Z" fill="#E24A3B"/>
+      <path d="M-35 -8 A35 35 0 0 0 35 -8Z" fill="#FFF1C2"/>
+      <g fill="#8A5A2B"><ellipse cx="-6" cy="6" rx="2.4" ry="4"/><ellipse cx="6" cy="6" rx="2.4" ry="4"/></g>
+    </g>
+    <g id="fx-pear">
+      <path d="M0 -40 C10 -40 12 -26 12 -20 C34 -6 40 30 0 42 C-40 30 -34 -6 -12 -20 C-12 -26 -10 -40 0 -40Z" fill="#C6D957"/>
+      <path d="M-18 -2 C-24 10 -20 22 -12 28" stroke="#fff" stroke-opacity=".4" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <circle cx="12" cy="14" r="2" fill="#8A7B2B"/><circle cx="4" cy="26" r="2" fill="#8A7B2B"/>
+    </g>
+
+    <clipPath id="mini-clip"><path d="M14 52 H106 L96 140 Q95 146 89 146 H31 Q25 146 24 140Z"/></clipPath>
+    <symbol id="mini-cup" viewBox="0 0 120 150">
+      <path d="M14 52 H106 L96 140 Q95 146 89 146 H31 Q25 146 24 140Z" fill="#fff" fill-opacity=".75"/>
+      <g clip-path="url(#mini-clip)">
+        <rect x="10" y="112" width="100" height="40" fill="#FFF4DC"/>
+        <rect x="26" y="68" width="18" height="18" rx="4" fill="#CDEBA0" transform="rotate(10 35 77)"/>
+        <rect x="50" y="76" width="18" height="18" rx="4" fill="#FFF1C2" stroke="#E24A3B" stroke-width="2" transform="rotate(-12 59 85)"/>
+        <rect x="74" y="66" width="18" height="18" rx="4" fill="#F2A71B" transform="rotate(14 83 75)"/>
+        <rect x="36" y="92" width="18" height="18" rx="4" fill="#E3E98F" transform="rotate(-8 45 101)"/>
+        <rect x="66" y="94" width="18" height="18" rx="4" fill="#CDEBA0" transform="rotate(16 75 103)"/>
+        <path d="M10 60 q10 10 20 0 t20 0 t20 0 t20 0 t20 0 V76 H10Z" fill="#FFF4DC"/>
+      </g>
+      <path d="M14 52 H106 L96 140 Q95 146 89 146 H31 Q25 146 24 140Z" fill="none" stroke="#9CC3AE" stroke-width="3" stroke-linejoin="round"/>
+      <ellipse cx="60" cy="50" rx="46" ry="11" fill="#FFF4DC"/>
+      <use href="#fx-strawberry" transform="translate(40 36) scale(.4) rotate(-12)"/>
+      <use href="#fx-grape" transform="translate(70 34) scale(.36)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <nav class="nav" id="nav" aria-label="Navigasi utama">
+    <ul class="links links-l">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#tentang">Tentang kami</a></li>
+    </ul>
+    <a class="logo" href="#top" aria-label="Corner Salad Buah, ke atas">Corner Salad Buah</a>
+    <ul class="links links-r">
+      <li><a href="#pesan">Cara pesan</a></li>
+      <li><a href="#lokasi">Lokasi</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav">Menu</button>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <h1 class="display" id="hero-title">
+      <span>Kesegaran</span>
+      <span>alami dalam</span>
+      <span>setiap</span>
+      <span>sajian.</span>
+    </h1>
+    <p class="sub">Freshness meets elegance.</p>
+    <div class="cta">
+      <a class="btn btn-accent" href="https://wa.me/6282138573844" target="_blank" rel="noopener">Pesan sekarang</a>
+      <a class="btn btn-ghost" href="#menu">Jelajahi menu</a>
+    </div>
+    <div class="field" aria-hidden="true">
+      <svg id="field" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="34" width="1600" height="400" fill="#1F5A3A"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro on-dark" aria-labelledby="intro-title">
+    <h2 class="display" id="intro-title"><span class="l1">Freshness meets</span><span class="l2">Elegance</span></h2>
+    <p>Nikmati perpaduan buah-buahan segar pilihan dengan saus creamy yang lembut dan cita rasa istimewa. Corner Salad Buah menghadirkan sajian segar yang memanjakan selera, dengan kualitas dan kelezatan dalam setiap cup.</p>
+  </section>
+
+  <!-- WHY -->
+  <section class="why" id="tentang" aria-labelledby="why-title">
+    <div class="why-grid">
+      <div>
+        <h2 class="display" id="why-title"><span class="l1">Mengapa</span><span class="l2">Corner Salad Buah?</span></h2>
+        <div class="reasons">
+          <div class="reason">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c2-5 5-8 9-10"/></svg></span>
+            <h3>Fresh Ingredients</h3>
+            <p>Buah-buahan pilihan untuk menghadirkan kesegaran dalam setiap sajian.</p>
+          </div>
+          <div class="reason">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 14c1 1.6 2.2 2.4 3.5 2.4s2.5-.8 3.5-2.4"/><path d="M9 9.5h.01M15 9.5h.01"/></svg></span>
+            <h3>Delicious Taste</h3>
+            <p>Perpaduan buah segar dan saus creamy yang lembut, lezat, dan menggugah selera.</p>
+          </div>
+          <div class="reason">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 5.5 6.8 5.5 10a5.5 5.5 0 0 1-11 0C6.5 9.800 9 7 12 3Z"/><path d="M9.500 14a2.800 2.800 0 0 0 2.500 2.500"/></svg></span>
+            <h3>Hygienic Preparation</h3>
+            <p>Disiapkan dengan memperhatikan kebersihan dan kualitas produk.</p>
+          </div>
+          <div class="reason">
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1.500 12h-13Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg></span>
+            <h3>Elegant Packaging</h3>
+            <p>Kemasan menarik dan praktis untuk menemani berbagai momen istimewa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-art" aria-hidden="true">
+        <svg viewBox="0 0 460 560" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="cupclip"><path d="M90 170 L370 170 L338 488 Q336 506 318 506 L142 506 Q124 506 122 488 Z"/></clipPath>
+          </defs>
+          <!-- brush stroke -->
+          <path d="M70 320 C20 200 110 70 250 70 c120 0 190 110 150 230 -40 120 -170 190 -260 150 -50 -22 -60 -80 -70 -130Z" fill="#F7B500"/>
+          <g stroke="#F7B500" stroke-width="12" stroke-linecap="round" fill="none">
+            <path d="M44 250 C34 224 48 186 72 160"/><path d="M30 292 C16 262 24 230 40 206"/>
+            <path d="M420 120 C440 140 446 170 440 196"/><path d="M432 250 C448 270 450 300 442 326"/>
+          </g>
+          <ellipse cx="230" cy="524" rx="120" ry="12" fill="#24362B" fill-opacity=".14"/>
+          <!-- cup -->
+          <path d="M90 170 L370 170 L338 488 Q336 506 318 506 L142 506 Q124 506 122 488 Z" fill="#fff" fill-opacity=".62"/>
+          <g clip-path="url(#cupclip)">
+            <rect x="80" y="404" width="300" height="120" fill="#FFF4DC"/>
+            <g>
+              <rect x="116" y="214" width="48" height="48" rx="10" fill="#CDEBA0" transform="rotate(12 140 238)"/>
+              <rect x="184" y="228" width="46" height="46" rx="10" fill="#FFF1C2" stroke="#E24A3B" stroke-width="5" transform="rotate(-10 207 251)"/>
+              <rect x="250" y="212" width="50" height="50" rx="10" fill="#E3E98F" transform="rotate(20 275 237)"/>
+              <rect x="312" y="236" width="46" height="46" rx="10" fill="#F2A71B" transform="rotate(-14 335 259)"/>
+              <rect x="136" y="288" width="48" height="48" rx="10" fill="#F2A71B" transform="rotate(-8 160 312)"/>
+              <rect x="204" y="296" width="50" height="50" rx="10" fill="#CDEBA0" transform="rotate(14 229 321)"/>
+              <rect x="274" y="290" width="48" height="48" rx="10" fill="#FFF1C2" stroke="#E24A3B" stroke-width="5" transform="rotate(-18 298 314)"/>
+              <rect x="170" y="352" width="46" height="46" rx="10" fill="#E3E98F" transform="rotate(10 193 375)"/>
+              <rect x="244" y="356" width="46" height="46" rx="10" fill="#F2A71B" transform="rotate(-12 267 379)"/>
+            </g>
+            <path d="M80 186 q35 30 70 0 t70 0 t70 0 t70 0 V222 H80Z" fill="#FFF4DC"/>
+          </g>
+          <path d="M90 170 L370 170 L338 488 Q336 506 318 506 L142 506 Q124 506 122 488 Z" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M104 214 L124 438" stroke="#fff" stroke-opacity=".7" stroke-width="7" stroke-linecap="round"/>
+          <!-- toppings -->
+          <ellipse cx="230" cy="168" rx="142" ry="28" fill="#FFF4DC"/>
+          <g stroke="#F9D55B" stroke-width="6" stroke-linecap="round">
+            <path d="M150 156 l14 8"/><path d="M178 150 l16 6"/><path d="M262 152 l16 6"/><path d="M296 158 l14 8"/><path d="M214 146 l12 8"/><path d="M240 162 l16 6"/>
+          </g>
+          <use href="#fx-strawberry" transform="translate(166 124) scale(1.15) rotate(-14)"/>
+          <use href="#fx-strawberry" transform="translate(300 128) scale(1.05) rotate(16)"/>
+          <use href="#fx-grape" transform="translate(234 104) scale(.95)"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU TEASER -->
+  <section class="menu" id="menu" aria-labelledby="menu-title">
+    <h2 class="display" id="menu-title"><span class="l1">Pilih ukuran</span><span class="l2">sesuai seleramu</span></h2>
+    <div class="sizes">
+      <article class="size">
+        <div class="stage" aria-hidden="true"><svg viewBox="0 0 120 150" style="height:120px"><use href="#mini-cup"/></svg></div>
+        <h3 class="display">Small</h3>
+        <span class="vol">300 ml</span>
+        <span class="price">Rp12.000</span>
+        <p>Sajian praktis berisi melon, pir, apel, dan mangga dengan saus creamy serta topping stroberi, anggur, dan keju.</p>
+        <a class="btn btn-primary" href="https://wa.me/6282138573844?text=Halo%20Corner%20Salad%20Buah%2C%20saya%20mau%20pesan%20ukuran%20Small" target="_blank" rel="noopener">Pesan Small</a>
+      </article>
+      <article class="size">
+        <div class="stage" aria-hidden="true"><svg viewBox="0 0 120 150" style="height:170px"><use href="#mini-cup"/></svg></div>
+        <h3 class="display">Middle</h3>
+        <span class="vol">600 ml</span>
+        <span class="price">Rp22.000</span>
+        <p>Porsi lebih puas dengan buah pilihan, saus creamy yang lembut, dan topping segar serta keju.</p>
+        <a class="btn btn-primary" href="https://wa.me/6282138573844?text=Halo%20Corner%20Salad%20Buah%2C%20saya%20mau%20pesan%20ukuran%20Middle" target="_blank" rel="noopener">Pesan Middle</a>
+      </article>
+      <article class="size">
+        <div class="stage" aria-hidden="true"><svg viewBox="0 0 120 150" style="height:228px"><use href="#mini-cup"/></svg></div>
+        <h3 class="display">Large</h3>
+        <span class="vol">1.000 ml</span>
+        <span class="price">Rp50.000</span>
+        <p>Sajian istimewa untuk berbagi bersama keluarga atau sahabat.</p>
+        <a class="btn btn-primary" href="https://wa.me/6282138573844?text=Halo%20Corner%20Salad%20Buah%2C%20saya%20mau%20pesan%20ukuran%20Large" target="_blank" rel="noopener">Pesan Large</a>
+      </article>
+    </div>
+    <p class="note">Buah: melon, pir, apel, mangga. Topping: stroberi, anggur, keju.</p>
+  </section>
+
+  <!-- QUOTE CAROUSEL -->
+  <section aria-roledescription="carousel" aria-label="Kata dari Corner Salad Buah" id="carousel">
+    <div class="dots" role="group" aria-label="Pilih slide">
+      <button class="dot" aria-label="Slide 1" aria-current="true"></button>
+      <button class="dot" aria-label="Slide 2" aria-current="false"></button>
+      <button class="dot" aria-label="Slide 3" aria-current="false"></button>
+    </div>
+    <div class="stage-q">
+      <svg class="grain" aria-hidden="true"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency=".012 .03" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 .62  0 0 0 0 .42  0 0 0 0 .02  0 0 0 .55 0"/></filter><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
+      <figure class="slide active" aria-live="polite">
+        <blockquote>A little freshness, a lot of happiness.</blockquote>
+        <figcaption>&mdash; Corner Salad Buah</figcaption>
+      </figure>
+      <figure class="slide">
+        <blockquote>Kesegaran buah pilihan selalu lebih menyenangkan dinikmati bersama.</blockquote>
+        <figcaption>&mdash; Large, 1.000 ml, untuk berbagi</figcaption>
+      </figure>
+      <figure class="slide">
+        <blockquote>Buah segar, saus creamy, topping istimewa. Semua dalam satu cup.</blockquote>
+        <figcaption>&mdash; Small, Middle, dan Large</figcaption>
+      </figure>
+      <svg class="stems" id="stems" viewBox="0 0 1600 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-top">
+    <a class="flogo" href="#top">Corner Salad Buah</a>
+    <a class="top-link" href="#top">Kembali ke atas</a>
+    <div class="social">
+      <a href="https://wa.me/6282138573844" target="_blank" rel="noopener" aria-label="WhatsApp Corner Salad Buah">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.600 15.100L2 22l5-1.300A10 10 0 1 0 12 2Zm5.200 14.100c-.2.600-1.300 1.200-1.800 1.200-.5.100-1 .2-3.300-.7-2.800-1.100-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.200.1.400 0 .6l-.4.600c-.1.200-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.100 1 2.100 1.300 2.400 1.500.3.100.5.100.7-.1l.9-1.100c.2-.3.400-.2.700-.1l1.900.9c.3.100.5.200.5.300.1.200.1.800-.1 1.300Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/cornersaladbuah?xtok=MWU3NXU2YmdjdTEweA==" target="_blank" rel="noopener" aria-label="Instagram @cornersaladbuah">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.500 2h9A5.500 5.500 0 0 1 22 7.500v9a5.500 5.500 0 0 1-5.500 5.500h-9A5.500 5.500 0 0 1 2 16.500v-9A5.500 5.500 0 0 1 7.500 2Zm0 2A3.500 3.500 0 0 0 4 7.500v9A3.500 3.500 0 0 0 7.500 20h9a3.500 3.500 0 0 0 3.500-3.500v-9A3.500 3.500 0 0 0 16.500 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.300-3.300a1.200 1.200 0 1 1 0 2.400 1.200 1.200 0 0 1 0-2.400Z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="foot-info">
+    <div id="pesan">
+      <h3>Pesan lewat aplikasi</h3>
+      <div class="platforms">
+        <a href="https://shopee.co.id/universal-link/now-food/shop/780088?deep_and_deferred=1&amp;shareChannel=whatsapp" target="_blank" rel="noopener" aria-label="Pesan melalui ShopeeFood">
+          <img class="platform-logo" src="image/Shopee Food Logo - Colored - zonalogo.com.svg" alt="ShopeeFood">
+        </a>
+        <a href="https://share.google/oCktFucpStq8C2tyZ" target="_blank" rel="noopener" aria-label="Pesan melalui GoFood">
+          <img class="platform-logo" src="image/GoFood Logo - Colored - zonalogo.com.svg" alt="GoFood">
+        </a>
+        <span class="soon">GrabFood (segera hadir)</span>
+      </div>
+    </div>
+    <div id="lokasi">
+      <h3>Lokasi</h3>
+      <address style="font-style:normal">Jl. Mahoni No. 120, RT 06/RW 03, Sampangan, Gajahmungkur, Kota Semarang, Jawa Tengah</address>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Mobile nav */
+(function(){
+  var nav=document.getElementById('nav'),btn=document.getElementById('navToggle');
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  nav.addEventListener('click',function(e){
+    if(e.target.closest('.links a')){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+  });
+})();
+
+/* Fruit field (seeded, so layout is stable) */
+(function(){
+  var svg=document.getElementById('field'),W=1600;
+  var s=11;function rnd(){s=(s*16807)%2147483647;return (s-1)/2147483646;}
+  var types=['strawberry','strawberry','mango','mango','melon','apple','grape','pear'];
+  var rows=[{y:34,k:.42},{y:78,k:.55},{y:126,k:.7},{y:186,k:.88},{y:250,k:1.08},{y:324,k:1.35},{y:398,k:1.62}];
+  var out='';
+  rows.forEach(function(r){
+    var step=95*r.k*.78;
+    for(var x=-40+rnd()*step;x<W+60;x+=step*(.8+rnd()*.4)){
+      var t=types[Math.floor(rnd()*types.length)];
+      var rot=(rnd()-.5)*70,sc=r.k*(.9+rnd()*.25),y=r.y+(rnd()-.5)*18;
+      out+='<use href="#fx-'+t+'" transform="translate('+x.toFixed(1)+' '+y.toFixed(1)+') rotate('+rot.toFixed(1)+') scale('+sc.toFixed(2)+')"/>';
+    }
+  });
+  svg.insertAdjacentHTML('beforeend',out);
+})();
+
+/* Mint stems at the bottom of the quote slides */
+(function(){
+  var svg=document.getElementById('stems'),W=1600,H=240;
+  var s=5;function rnd(){s=(s*16807)%2147483647;return (s-1)/2147483646;}
+  var out='';
+  for(var i=0;i<26;i++){
+    var x=i*(W/25)+(rnd()-.5)*40,h=90+rnd()*130,dx=(rnd()-.5)*90;
+    var col=rnd()>.5?'#2C7A55':'#1F5A3A';
+    var x2=x+dx,y2=H-h;
+    out+='<path d="M'+x.toFixed(0)+' '+H+' C'+(x+dx*.2).toFixed(0)+' '+(H-h*.4).toFixed(0)+' '+(x+dx*.9).toFixed(0)+' '+(H-h*.7).toFixed(0)+' '+x2.toFixed(0)+' '+y2.toFixed(0)+'" stroke="'+col+'" stroke-width="3" fill="none" stroke-linecap="round"/>';
+    for(var j=1;j<=5;j++){
+      var t=j/6,lx=x+dx*t*t*1.1,ly=H-h*t,side=j%2?1:-1,ang=side*(35+rnd()*25);
+      out+='<ellipse cx="'+(lx+side*9).toFixed(1)+'" cy="'+ly.toFixed(1)+'" rx="12" ry="5.500" fill="'+col+'" transform="rotate('+(ang-90*0).toFixed(0)+' '+lx.toFixed(1)+' '+ly.toFixed(1)+')"/>';
+    }
+  }
+  svg.innerHTML=out;
+})();
+
+/* Carousel */
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('#carousel .slide'));
+  var dots=[].slice.call(document.querySelectorAll('#carousel .dot'));
+  var i=0,timer=null;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(n){
+    i=(n+slides.length)%slides.length;
+    slides.forEach(function(el,k){el.classList.toggle('active',k===i);});
+    dots.forEach(function(d,k){d.setAttribute('aria-current',k===i?'true':'false');});
+  }
+  function start(){if(reduce||timer)return;timer=setInterval(function(){show(i+1);},7000);}
+  function stop(){clearInterval(timer);timer=null;}
+  dots.forEach(function(d,k){d.addEventListener('click',function(){show(k);stop();});});
+  var root=document.getElementById('carousel');
+  root.addEventListener('mouseenter',stop);root.addEventListener('mouseleave',start);
+  root.addEventListener('focusin',stop);root.addEventListener('focusout',start);
+  root.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){show(i+1);stop();}
+    if(e.key==='ArrowLeft'){show(i-1);stop();}
+  });
+  start();
+})();
+</script>
+</body>
+</html>
