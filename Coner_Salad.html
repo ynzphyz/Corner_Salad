@@ -141,20 +141,117 @@ img,svg{max-width:100%}
 .menu h2 .l1{display:block}
 .menu h2 .l2{display:block;color:var(--primary)}
 .sizes{max-width:1080px;margin:56px auto 0;display:grid;grid-template-columns:repeat(3,1fr)}
-.size{padding:8px 32px 12px;display:flex;flex-direction:column;align-items:center;gap:6px}
-.size + .size{border-left:1px solid var(--hairline)}
+.size{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding:18px 32px 22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  border:1px solid rgba(31,90,58,.12);
+  border-radius:28px;
+  background:rgba(255,255,255,.3);
+  box-shadow:0 14px 30px rgba(31,90,58,.06);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.size::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:230px;
+  height:230px;
+  top:24px;
+  left:50%;
+  border-radius:50%;
+  transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(247,181,0,.22) 0,rgba(247,181,0,.08) 42%,transparent 72%);
+}
+.size::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:0;
+  left:18%;
+  right:18%;
+  height:4px;
+  border-radius:0 0 99px 99px;
+  background:var(--accent);
+  box-shadow:0 0 18px rgba(247,181,0,.5);
+}
+.size--medium::before{
+  background:radial-gradient(circle,rgba(204,43,73,.16) 0,rgba(204,43,73,.06) 42%,transparent 72%);
+}
+.size--medium::after{
+  background:var(--primary);
+  box-shadow:0 0 18px rgba(204,43,73,.42);
+}
+.size--large::before{
+  background:radial-gradient(circle,rgba(44,122,85,.2) 0,rgba(44,122,85,.07) 42%,transparent 72%);
+}
+.size--large::after{
+  background:var(--p-green-700);
+  box-shadow:0 0 18px rgba(44,122,85,.42);
+}
+.size > *{position:relative;z-index:1}
+.size:hover{
+  transform:translateY(-8px);
+  border-color:rgba(31,90,58,.25);
+  box-shadow:0 22px 38px rgba(31,90,58,.13);
+}
+.size + .size{border-left:1px solid rgba(31,90,58,.12)}
 .size .stage{height:230px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:10px}
-.size .stage svg{width:auto}
+.size .stage img{
+  display:block;
+  width:auto;
+  max-width:none;
+  object-fit:contain;
+  object-position:center bottom;
+  border-radius:18px;
+  filter:
+    drop-shadow(0 0 0 rgba(31,90,58,.28))
+    drop-shadow(0 10px 16px rgba(31,90,58,.14));
+  transition:transform .25s ease,filter .25s ease;
+}
+.size:hover .stage img{
+  filter:
+    drop-shadow(0 0 0 rgba(31,90,58,.45))
+    drop-shadow(0 14px 22px rgba(31,90,58,.2));
+}
+.size--small .stage img{height:150px}
+.size--medium .stage img{height:210px}
+.size--large .stage img{height:280px}
 .size h3{font-size:34px;line-height:1.1}
 .size .vol{font-weight:600;color:var(--text-muted);font-size:17px}
 .size .price{font-family:var(--font-display);font-size:46px;line-height:1.1;color:var(--primary);margin-top:6px}
 .size p{max-width:19em;color:var(--text-muted);font-size:17px;line-height:1.55;margin:4px 0 16px}
 .menu .note{margin-top:44px;color:var(--text-muted);font-size:17px}
+@media (prefers-reduced-motion:no-preference){
+  .size--small .stage img{animation:cupSwaySmall 4.6s ease-in-out infinite}
+  .size--medium .stage img{animation:cupSwayMedium 5.2s ease-in-out infinite}
+  .size--large .stage img{animation:cupSwayLarge 5.8s ease-in-out infinite}
+  @keyframes cupSwaySmall{
+    0%,100%{transform:rotate(-.8deg)}
+    50%{transform:rotate(.8deg)}
+  }
+  @keyframes cupSwayMedium{
+    0%,100%{transform:rotate(-.7deg)}
+    50%{transform:rotate(.7deg)}
+  }
+  @keyframes cupSwayLarge{
+    0%,100%{transform:rotate(-.6deg)}
+    50%{transform:rotate(.6deg)}
+  }
+}
 @media (max-width:820px){
   .sizes{grid-template-columns:1fr;margin-top:40px}
   .size{padding:32px 8px}
   .size + .size{border-left:0;border-top:1px solid var(--hairline)}
-  .size .stage{height:auto;min-height:140px}
+  .size .stage{height:230px;min-height:0}
+  .size--small .stage img{height:150px}
+  .size--medium .stage img{height:210px}
+  .size--large .stage img{height:280px}
 }
 
 /* ---------- Quote carousel ---------- */
@@ -379,24 +476,24 @@ img,svg{max-width:100%}
   <section class="menu" id="menu" aria-labelledby="menu-title">
     <h2 class="display" id="menu-title"><span class="l1">Pilih ukuran</span><span class="l2">sesuai seleramu</span></h2>
     <div class="sizes">
-      <article class="size">
-        <div class="stage" aria-hidden="true"><svg viewBox="0 0 120 150" style="height:120px"><use href="#mini-cup"/></svg></div>
+      <article class="size size--small">
+        <div class="stage" aria-hidden="true"><img src="image/small.png" alt=""></div>
         <h3 class="display">Small</h3>
         <span class="vol">300 ml</span>
         <span class="price">Rp12.000</span>
         <p>Sajian praktis berisi melon, pir, apel, dan mangga dengan saus creamy serta topping stroberi, anggur, dan keju.</p>
         <a class="btn btn-primary" href="https://wa.me/6282138573844?text=Halo%20Corner%20Salad%20Buah%2C%20saya%20mau%20pesan%20ukuran%20Small" target="_blank" rel="noopener">Pesan Small</a>
       </article>
-      <article class="size">
-        <div class="stage" aria-hidden="true"><svg viewBox="0 0 120 150" style="height:170px"><use href="#mini-cup"/></svg></div>
-        <h3 class="display">Middle</h3>
+      <article class="size size--medium">
+        <div class="stage" aria-hidden="true"><img src="image/medium.png" alt=""></div>
+        <h3 class="display">Medium</h3>
         <span class="vol">600 ml</span>
         <span class="price">Rp22.000</span>
         <p>Porsi lebih puas dengan buah pilihan, saus creamy yang lembut, dan topping segar serta keju.</p>
-        <a class="btn btn-primary" href="https://wa.me/6282138573844?text=Halo%20Corner%20Salad%20Buah%2C%20saya%20mau%20pesan%20ukuran%20Middle" target="_blank" rel="noopener">Pesan Middle</a>
+        <a class="btn btn-primary" href="https://wa.me/6282138573844?text=Halo%20Corner%20Salad%20Buah%2C%20saya%20mau%20pesan%20ukuran%20Medium" target="_blank" rel="noopener">Pesan Medium</a>
       </article>
-      <article class="size">
-        <div class="stage" aria-hidden="true"><svg viewBox="0 0 120 150" style="height:228px"><use href="#mini-cup"/></svg></div>
+      <article class="size size--large">
+        <div class="stage" aria-hidden="true"><img src="image/large.png" alt=""></div>
         <h3 class="display">Large</h3>
         <span class="vol">1.000 ml</span>
         <span class="price">Rp50.000</span>
@@ -426,7 +523,7 @@ img,svg{max-width:100%}
       </figure>
       <figure class="slide">
         <blockquote>Buah segar, saus creamy, topping istimewa. Semua dalam satu cup.</blockquote>
-        <figcaption>&mdash; Small, Middle, dan Large</figcaption>
+        <figcaption>&mdash; Small, Medium, dan Large</figcaption>
       </figure>
       <svg class="stems" id="stems" viewBox="0 0 1600 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
     </div>
